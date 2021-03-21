@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "384831190149",
+    "project_id": "mentspire",
+    "storage_bucket": "mentspire.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:384831190149:android:40ea9236b36629f10ee5ec",
+        "android_client_info": {
+          "package_name": "com.mentspire.mentspire"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "384831190149-fvqlqdmpr41fv8ek6m36g2tohsoab4d9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_zbibZvxXGJgHMuUFhAi68r8Fx2iRTP0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "384831190149-fvqlqdmpr41fv8ek6m36g2tohsoab4d9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "384831190149-ds45km3da6rjt2547q654t30fcisqn5m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mentspire.mentspire.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
