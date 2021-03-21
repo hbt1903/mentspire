@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mentspire/Helpers/show_snackbar.dart';
-import 'package:mentspire/Screens/register_screen.dart';
-import 'package:mentspire/Screens/reset_password_screen.dart';
+import 'package:mentspire/Screens/Auth/register_screen.dart';
+import 'package:mentspire/Screens/Auth/reset_password_screen.dart';
 
 final _auth = FirebaseAuth.instance;
 
@@ -46,10 +46,17 @@ class LoginController extends GetxController {
   }
 
   goToRegister() {
-    Get.to(RegisterScreen());
+    Get.toNamed("/register");
   }
 
   goToResetPassword() {
-    Get.to(ResetPasswordScreen());
+    Get.toNamed("/reset_password");
+  }
+
+  @override
+  void onClose() {
+    emailController.clear();
+    passwordController.clear();
+    super.onClose();
   }
 }
