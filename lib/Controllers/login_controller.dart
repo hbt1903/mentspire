@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mentspire/Helpers/show_snackbar.dart';
 import 'package:mentspire/Screens/register_screen.dart';
+import 'package:mentspire/Screens/reset_password_screen.dart';
 
 final _auth = FirebaseAuth.instance;
 
@@ -46,5 +47,9 @@ class LoginController extends GetxController {
 
   goToRegister() {
     Get.to(RegisterScreen());
+  }
+
+  goToResetPassword() {
+    Get.to(ResetPasswordScreen());
   }
 }

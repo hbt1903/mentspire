@@ -67,6 +67,14 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 16),
+                    InkWell(
+                      onTap: _controller.goToResetPassword,
+                      child: Text(
+                        "Forgot password?\nReset now",
+                        style: infoTextStyle,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -84,8 +92,6 @@ class LoginScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 8),
-              InkWell(child: Text("forgot pass", style: infoTextStyle)),
             ],
           ),
         ),
