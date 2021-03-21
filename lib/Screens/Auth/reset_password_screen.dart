@@ -7,10 +7,7 @@ import 'package:mentspire/Widget/custom_button.dart';
 class ResetPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(
-      () => ResetPasswordController(),
-      fenix: true,
-    );
+    Get.lazyPut(() => ResetPasswordController(), fenix: true);
     final ResetPasswordController _controller = Get.find();
     return Scaffold(
       appBar: AppBar(

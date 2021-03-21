@@ -7,9 +7,10 @@ import 'package:mentspire/Themes/text_themes.dart';
 import 'package:mentspire/Widget/custom_button.dart';
 
 class LoginScreen extends StatelessWidget {
-  final LoginController _controller = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => LoginController(), fenix: true);
+    final LoginController _controller = Get.find();
     return Scaffold(
       appBar: AppBar(
         title: Text("LOGIN", style: titleTextStyle),
