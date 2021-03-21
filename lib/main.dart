@@ -1,7 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mentspire/Screens/login_screen.dart';
+import 'package:mentspire/Controllers/auth_controller.dart';
+import 'package:mentspire/Screens/App/home_screen.dart';
+import 'package:mentspire/Screens/Auth/login_screen.dart';
 import 'package:get/get.dart';
+import 'package:mentspire/Screens/Auth/register_screen.dart';
+import 'package:mentspire/Screens/Auth/reset_password_screen.dart';
+import 'package:mentspire/Screens/splash_screen.dart';
 import 'package:mentspire/Themes/colors.dart';
 import 'package:mentspire/Themes/input_decoration_theme.dart';
 import 'package:mentspire/Themes/text_themes.dart';
@@ -9,6 +14,7 @@ import 'package:mentspire/Themes/text_themes.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  AuthController authController = Get.put(AuthController());
   runApp(MyApp());
 }
 
@@ -34,7 +40,13 @@ class MyApp extends StatelessWidget {
           enabledBorder: enabledBorder,
         ),
       ),
-      home: LoginScreen(),
+      getPages: [
+        GetPage(name: '/', page: () => SplashScreen()),
+        GetPage(name: '/home', page: () => HomeScreen()),
+        GetPage(name: '/login', page: () => LoginScreen()),
+        GetPage(name: "/register", page: () => RegisterScreen()),
+        GetPage(name: "/reset_password", page: () => ResetPasswordScreen()),
+      ],
     );
   }
 }
