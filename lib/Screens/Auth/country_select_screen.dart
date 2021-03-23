@@ -3,11 +3,14 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mentspire/Controllers/country_select_controller.dart';
+import 'package:mentspire/Models/app_user.dart';
 import 'package:mentspire/Models/university.dart';
 import 'package:mentspire/Themes/colors.dart';
 import 'package:mentspire/Themes/text_themes.dart';
 import 'package:get/get.dart';
 import 'package:mentspire/Widget/custom_button.dart';
+
+final _user = AppUser.instance;
 
 class CountrySelectScreen extends StatelessWidget {
   @override
@@ -26,7 +29,7 @@ class CountrySelectScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(right: Get.width * .2, bottom: 32),
                 child: Text(
-                  "Hi Hasan, please select your country and your school",
+                  "Hi ${_user.name}, please select your country and your school",
                   style: extraBigTitleTextStyle,
                 ),
               ),
