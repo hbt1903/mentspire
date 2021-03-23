@@ -21,6 +21,12 @@ const infoTextStyle = TextStyle(
   letterSpacing: 1,
 );
 
+const chipLabelTextStyle = TextStyle(
+  color: white,
+  fontSize: 14,
+  letterSpacing: 1,
+);
+
 const boldInfoTextStyle = TextStyle(
   color: lightGrey,
   fontSize: 14,
