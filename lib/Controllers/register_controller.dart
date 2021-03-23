@@ -48,10 +48,11 @@ class RegisterController extends GetxController {
         );
         User user = cred.user;
         if (user != null) {
-          _firestore.collection("users").doc(user.uid).set({
+          await _firestore.collection("users").doc(user.uid).set({
             "email": emailController.text,
             "name": nameController.text,
             "type": type.value,
+            "initiated": false,
           });
           showSnackBar("Account is created successfully", color: Colors.green);
         }
