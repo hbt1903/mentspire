@@ -2,10 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mentspire/Helpers/show_snackbar.dart';
+import 'package:mentspire/Models/app_user.dart';
 import 'package:mentspire/Screens/Auth/register_screen.dart';
 import 'package:mentspire/Screens/Auth/reset_password_screen.dart';
 
 final _auth = FirebaseAuth.instance;
+final _user = AppUser.instance;
 
 class LoginController extends GetxController {
   RxBool passwordVisible = false.obs;
