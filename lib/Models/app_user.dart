@@ -6,6 +6,8 @@ final _firestore = FirebaseFirestore.instance;
 class AppUser with ChangeNotifier {
   static AppUser instance = AppUser._();
   String uid, name, email, photo, type, country, countryCode, school;
+  bool initiated;
+  List<String> skills = [];
 
   bool get isMentor => type == "Mentor";
   bool get isMentee => type == "Mentee";
@@ -26,5 +28,10 @@ class AppUser with ChangeNotifier {
     country = data["country"] ?? "";
     countryCode = data["country_code"] ?? "";
     school = data["school"] ?? "";
+    initiated = data["initiated"] ?? false;
+    if (data.containsKey("skills")) {
+      skills =
+          (data["skills"] as List<dynamic>).map((e) => e.toString()).toList();
+    }
   }
 }
