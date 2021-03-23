@@ -36,7 +36,6 @@ class SkillsController extends GetxController {
 
   setSelectedSkils(List<dynamic> _values) {
     selectedSkills = _values.map((e) => e.toString()).toList().obs;
-    print(selectedSkills.toString());
   }
 
   fetchSkills() async {
