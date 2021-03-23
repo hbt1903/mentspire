@@ -8,6 +8,13 @@ const titleTextStyle = TextStyle(
   letterSpacing: 1,
 );
 
+const extraBigTitleTextStyle = TextStyle(
+  color: darkGrey,
+  fontSize: 32,
+  fontWeight: FontWeight.w700,
+  letterSpacing: .5,
+);
+
 const infoTextStyle = TextStyle(
   color: lightGrey,
   fontSize: 14,
