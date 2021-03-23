@@ -5,7 +5,7 @@ final _firestore = FirebaseFirestore.instance;
 
 class AppUser with ChangeNotifier {
   static AppUser instance = AppUser._();
-  String uid, name, email, photo, type;
+  String uid, name, email, photo, type, country, countryCode, school;
 
   bool get isMentor => type == "Mentor";
   bool get isMentee => type == "Mentee";
@@ -23,5 +23,8 @@ class AppUser with ChangeNotifier {
     email = data["email"] ?? "";
     photo = data["photo"] ?? "";
     type = data["type"] ?? "";
+    country = data["country"] ?? "";
+    countryCode = data["country_code"] ?? "";
+    school = data["school"] ?? "";
   }
 }
