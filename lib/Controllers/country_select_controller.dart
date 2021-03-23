@@ -1,8 +1,10 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:mentspire/Helpers/show_snackbar.dart';
 import 'package:mentspire/Models/app_user.dart';
 import 'package:mentspire/Models/university.dart';
+import 'package:mentspire/Themes/colors.dart';
 
 final _firestore = FirebaseFirestore.instance;
 final _user = AppUser.instance;
@@ -36,9 +38,7 @@ class CountrySelectController extends GetxController {
       if (_user.isMentor || true) {
         universities.clear();
         _universitySelected.value = false;
-        _loadingUniversities.value = true;
         await loadUniversities();
-        _loadingUniversities.value = false;
       }
     }
   }
@@ -66,5 +66,26 @@ class CountrySelectController extends GetxController {
     _loadingUniversities.value = false;
   }
 
-  save() async {}
+  save() async {
+    _loading.value = true;
+    await _user.docRef.update({
+      "country": selectedCountry.value.name,
+      "country_code": selectedCountry.value.countryCode,
+    });
+    _user.country = selectedCountry.value.name;
+    _user.countryCode = selectedCountry.value.countryCode;
+    if (_user.isMentor) {
+      await _user.docRef.update({
+        "school": selectedUniversity.value.name,
+      });
+      _user.school = selectedUniversity.value.name;
+    }
+    _loading.value = false;
+
+    if (_user.initiated) {
+      showSnackBar("Country updated", color: green);
+    } else {
+      Get.offAllNamed("/skill_select");
+    }
+  }
 }
