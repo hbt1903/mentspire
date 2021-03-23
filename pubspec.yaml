@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   get:
+  image_picker:
   firebase_core:
   firebase_auth:
   cloud_firestore:
@@ -32,6 +33,7 @@ dependencies:
   country_picker:
   dropdown_search:
   swipable_stack:
+  multiselect_formfield:
 
 
   # The following adds the Cupertino Icons font to your application.
