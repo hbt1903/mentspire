@@ -24,8 +24,10 @@ class AuthController extends GetxController {
     } else {
       _user.setUid(_auth.currentUser.uid);
       await fetchUserInfo();
-
-      Get.offAllNamed("/home");
+      if (_user.initiated)
+        Get.offAllNamed("/home");
+      else
+        Get.offAllNamed("/country_select");
     }
   }
 
