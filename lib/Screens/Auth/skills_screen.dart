@@ -5,6 +5,8 @@ import 'package:mentspire/Controllers/skills_controller.dart';
 import 'package:mentspire/Themes/colors.dart';
 import 'package:mentspire/Themes/text_themes.dart';
 import 'package:get/get.dart';
+import 'package:mentspire/Widget/custom_button.dart';
+import 'package:multiselect_formfield/multiselect_formfield.dart';
 import 'package:swipable_stack/swipable_stack.dart';
 
 class SkillsScreen extends StatelessWidget {
@@ -28,17 +30,48 @@ class SkillsScreen extends StatelessWidget {
                   style: extraBigTitleTextStyle,
                 ),
               ),
-              Container(
-                width: double.infinity,
-                height: Get.width * .8,
-                child: Center(
-                  child: Obx(
-                    () => _controller.loadingSkills.isFalse
-                        ? _controller.checkedAllSkills.isFalse
-                            ? SkillsWidget(_controller)
-                            : Text("You have checked all skills")
-                        : SpinKitCircle(color: lightGrey, size: 32),
-                  ),
+              Expanded(
+                child: ListView(
+                  children: [
+                    Obx(
+                      () => _controller.loadingSkills.isFalse
+                          ? MultiSelectFormField(
+                              textField: 'display',
+                              valueField: 'value',
+                              okButtonLabel: 'Save',
+                              cancelButtonLabel: 'Cancel',
+                              checkBoxCheckColor: white,
+                              checkBoxActiveColor: green,
+
+                              dialogTextStyle: infoTextStyle,
+                              title: Text("Skills", style: boldInfoTextStyle),
+                              chipBackGroundColor: darkGrey,
+                              chipLabelStyle: chipLabelTextStyle,
+                              // required: true,
+                              onSaved: (value) {
+                                if (value == null) return;
+                                _controller.setSelectedSkils(value);
+                              },
+                              dataSource: _controller.skills
+                                  .map(
+                                    (e) => {
+                                      "display": e,
+                                      "value": e,
+                                    },
+                                  )
+                                  .toList(),
+                            )
+                          : SpinKitCircle(color: lightGrey, size: 32),
+                    ),
+                    SizedBox(height: 32),
+                    Obx(
+                      () => CustomButton(
+                        label: "Save",
+                        loading: _controller.loading.isTrue,
+                        onTap: _controller.save,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -68,7 +101,7 @@ class SkillsWidget extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            color: green,
+            color: darkGrey,
           ),
           child: Center(
             child: Text(_controller.skills[index],
