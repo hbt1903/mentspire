@@ -1,4 +1,5 @@
 export 'App/home_screen.dart';
+export 'App/profile_screen.dart';
 export 'Auth/add_photo_screen.dart';
 export 'Auth/country_select_screen.dart';
 export 'Auth/login_screen.dart';

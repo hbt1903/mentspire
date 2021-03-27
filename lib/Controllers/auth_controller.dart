@@ -9,6 +9,12 @@ final _user = AppUser.instance;
 class AuthController extends GetxController {
   RxString currentMessage = "Checking auth state".obs;
   Rx<User> firebaseUser = Rx<User>();
+  Rx<AppUser> user = _user.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+  }
 
   @override
   onReady() {
@@ -24,6 +30,7 @@ class AuthController extends GetxController {
     } else {
       _user.setUid(_auth.currentUser.uid);
       await fetchUserInfo();
+      user.bindStream(appUserStream());
       if (_user.initiated)
         Get.offAllNamed("/home");
       else
@@ -36,6 +43,15 @@ class AuthController extends GetxController {
     Map<String, dynamic> data = snap.data();
     _user.setData(data);
     return;
+  }
+
+  Stream<AppUser> appUserStream() {
+    return _user.docRef.snapshots().map((snap) {
+      AppUser userSnap = AppUser();
+      userSnap.setUid(snap.id);
+      userSnap.setData(snap.data());
+      return userSnap;
+    });
   }
 
   signOut() async {

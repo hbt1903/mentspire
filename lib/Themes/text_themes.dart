@@ -33,3 +33,10 @@ const boldInfoTextStyle = TextStyle(
   fontWeight: FontWeight.w800,
   letterSpacing: 1,
 );
+
+const labelTextStyle = TextStyle(
+  color: darkGrey,
+  fontSize: 16,
+  fontWeight: FontWeight.w500,
+  letterSpacing: 1,
+);

@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mentspire/Controllers/auth_controller.dart';
 import 'package:get/get.dart';
+import 'package:mentspire/Screens/App/tab_app.dart';
 import 'package:mentspire/Themes/colors.dart';
 import 'package:mentspire/Themes/input_decoration_theme.dart';
 import 'package:mentspire/Themes/text_themes.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
       ),
       getPages: [
         GetPage(name: '/', page: () => SplashScreen()),
-        GetPage(name: '/home', page: () => HomeScreen()),
+        GetPage(name: '/home', page: () => TabApp()),
         GetPage(name: '/login', page: () => LoginScreen()),
         GetPage(name: "/register", page: () => RegisterScreen()),
         GetPage(name: "/reset_password", page: () => ResetPasswordScreen()),
