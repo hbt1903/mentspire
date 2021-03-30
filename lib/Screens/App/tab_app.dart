@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mentspire/Controllers/nav_controller.dart';
+import 'package:mentspire/Screens/App/all_chats_screen.dart';
 import 'package:mentspire/Screens/App/profile_screen.dart';
 import 'package:mentspire/Screens/App/requests_screen.dart';
 import 'package:mentspire/Screens/screens.dart';
@@ -25,8 +26,12 @@ class TabApp extends StatelessWidget {
               label: "Home",
             ),
             BottomNavigationBarItem(
+              icon: Icon(Icons.info),
+              label: "Requests",
+            ),
+            BottomNavigationBarItem(
               icon: Icon(Icons.chat_rounded),
-              label: "Chat",
+              label: "Chats",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
@@ -41,6 +46,7 @@ class TabApp extends StatelessWidget {
         children: [
           HomeScreen(),
           RequestsScreen(),
+          AllChatsScreen(),
           ProfileScreen(),
         ],
       ),

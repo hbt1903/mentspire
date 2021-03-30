@@ -36,3 +36,21 @@ const purpleGradient = LinearGradient(
   begin: Alignment.centerLeft,
   end: Alignment.centerRight,
 );
+
+const sinCityRedGradient = LinearGradient(
+  colors: [Color(0xFFED213A), Color(0xFF93291E)],
+  begin: Alignment.centerLeft,
+  end: Alignment.centerRight,
+);
+
+const lawrenciumGradient = LinearGradient(
+  colors: [Color(0xFF0f0c29), Color(0xFF302b63), Color(0xFF24243e)],
+  begin: Alignment.centerLeft,
+  end: Alignment.centerRight,
+);
+
+const redSunsetGradient = LinearGradient(
+  colors: [Color(0xFF355C7D), Color(0xFF6C5B7B), Color(0xFFC06C84)],
+  begin: Alignment.centerLeft,
+  end: Alignment.centerRight,
+);

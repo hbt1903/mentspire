@@ -48,6 +48,32 @@ class RequestsController extends GetxController {
   static Future acceptRequest(Request _req) async {
     try {
       await _req.docRef.update({"state": "accepted"});
+      await _firestore.collection("users").doc(_req.menteeId).update({
+        "pending_users": FieldValue.arrayRemove([_req.mentorId]),
+        "added_users": FieldValue.arrayUnion([_req.mentorId]),
+      });
+      await _firestore.collection("users").doc(_req.mentorId).update({
+        "added_users": FieldValue.arrayUnion([_req.menteeId])
+      });
+      await _firestore.collection("chats").add({
+        "uids": [_req.menteeId, _req.mentorId],
+        "names": [_req.menteeName, _req.mentorName],
+        "photos": [_req.menteePhoto, _req.mentorPhoto],
+        "last_message": "${_req.mentorName} Accepted Request",
+        "last_message_date_time": DateTime.now(),
+      });
+      print("Chat added");
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  static Future rejectRequest(Request _req) async {
+    try {
+      await _firestore.collection("users").doc(_req.menteeId).update({
+        "pending_users": FieldValue.arrayRemove([_req.mentorId]),
+      });
+      await _req.docRef.delete();
     } catch (e) {}
   }
 
@@ -78,7 +104,7 @@ class RequestsController extends GetxController {
           .where("mentor", isEqualTo: _mentor.uid)
           .get()
           .then((value) => value.docs.forEach((doc) async {
-                await doc.reference.update({"state": "canceled"});
+                await doc.reference.delete();
                 return;
               }));
       _user.docRef.update({

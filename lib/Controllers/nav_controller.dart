@@ -12,7 +12,7 @@ class NavController extends GetxController with SingleGetTickerProviderMixin {
 
   @override
   void onInit() {
-    tabController = TabController(vsync: this, length: 3);
+    tabController = TabController(vsync: this, length: 4);
     super.onInit();
   }
 

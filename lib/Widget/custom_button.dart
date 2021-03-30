@@ -8,12 +8,14 @@ class CustomButton extends StatelessWidget {
   final Function onTap;
   final Color textColor, bgColor;
   final bool loading;
+  final bool useGreenGredient;
   CustomButton({
     this.label,
     this.onTap,
     this.bgColor,
     this.textColor = white,
     this.loading = false,
+    this.useGreenGredient = true,
   });
 
   @override
@@ -27,7 +29,11 @@ class CustomButton extends StatelessWidget {
         padding: EdgeInsets.all(8),
         margin: EdgeInsets.symmetric(vertical: 8, horizontal: 2),
         decoration: BoxDecoration(
-          gradient: !bgColorGiven ? greenGradient : null,
+          gradient: !bgColorGiven
+              ? useGreenGredient
+                  ? greenGradient
+                  : sinCityRedGradient
+              : null,
           color: bgColorGiven ? bgColor : null,
           borderRadius: BorderRadius.circular(16),
           boxShadow: [

@@ -53,7 +53,7 @@ class ProfileScreen extends StatelessWidget {
                   Icon(Icons.map_rounded, color: darkGrey),
                   SizedBox(width: 8),
                   Text(
-                    _user.country,
+                    _user.countrySchoolText,
                     style: infoTextStyle,
                     textAlign: TextAlign.center,
                   ),
@@ -73,6 +73,26 @@ class ProfileScreen extends StatelessWidget {
                       .toList(),
                 ),
               ),
+              if (_user.uid != _authUser.uid && _authUser.isMentee)
+                Obx(() {
+                  bool pending = _authController.user.value.pendingUsers
+                      .contains(_user.uid);
+                  bool accepted =
+                      _authController.user.value.addedUsers.contains(_user.uid);
+                  return CustomButton(
+                    label: accepted
+                        ? "Send Message"
+                        : !pending
+                            ? "Send Request"
+                            : "Cancel Request",
+                    onTap: () => accepted
+                        ? () {}
+                        : !pending
+                            ? RequestsController.sendRequest(_user)
+                            : RequestsController.cancelRequest(_user),
+                    useGreenGredient: !pending,
+                  );
+                }),
               if (_user.uid == _authUser.uid)
                 Expanded(
                   child: ListView(
