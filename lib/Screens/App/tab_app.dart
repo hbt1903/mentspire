@@ -4,6 +4,7 @@ import 'package:mentspire/Controllers/nav_controller.dart';
 import 'package:mentspire/Screens/App/all_chats_screen.dart';
 import 'package:mentspire/Screens/App/profile_screen.dart';
 import 'package:mentspire/Screens/App/requests_screen.dart';
+import 'package:mentspire/Screens/App/search_screen.dart';
 import 'package:mentspire/Screens/screens.dart';
 import 'package:mentspire/Themes/colors.dart';
 
@@ -22,8 +23,8 @@ class TabApp extends StatelessWidget {
           elevation: 20,
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Home",
+              icon: Icon(Icons.search),
+              label: "Search",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.info),
@@ -44,7 +45,7 @@ class TabApp extends StatelessWidget {
         physics: NeverScrollableScrollPhysics(),
         controller: navController.tabController,
         children: [
-          HomeScreen(),
+          SearchScreen(),
           RequestsScreen(),
           AllChatsScreen(),
           ProfileScreen(),
