@@ -10,9 +10,20 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final AuthController _controller = Get.find();
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Column(
+      body: Center(
+        child: Image.asset(
+          "assets/images/bg.jpeg",
+          width: Get.width,
+          height: Get.height,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+}
+
+/*
+Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SpinKitFadingCube(
@@ -28,8 +39,4 @@ class SplashScreen extends StatelessWidget {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
+ */

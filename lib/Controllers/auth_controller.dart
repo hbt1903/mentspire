@@ -25,6 +25,7 @@ class AuthController extends GetxController {
 
   handleAuthChanged(_firebaseUser) async {
     print("Auth state changed");
+    await Future.delayed(Duration(seconds: 1));
     if (_firebaseUser == null) {
       Get.offAllNamed("/login");
     } else {

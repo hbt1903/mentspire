@@ -4,7 +4,11 @@ import 'package:mentspire/Models/app_user.dart';
 import 'package:mentspire/Models/mentor.dart';
 import 'package:mentspire/Models/request.dart';
 import 'package:mentspire/Themes/colors.dart';
+import 'package:mentspire/Themes/text_themes.dart';
 import 'package:mentspire/Widget/custom_avatar.dart';
+import 'package:mentspire/Widget/skill_tile.dart';
+
+final _user = AppUser.instance;
 
 class MentorCard extends StatelessWidget {
   final AppUser _mentor;
@@ -28,9 +32,18 @@ class MentorCard extends StatelessWidget {
             child: Column(
               children: [
                 CustomAvatar(_mentor.photo, Get.width * .2),
-                Text(_mentor.name),
-                Text(_mentor.school),
-                Text(_mentor.country),
+                Text(_mentor.name, style: titleTextStyle),
+                Text(_mentor.school, style: infoTextStyle),
+                Text(_mentor.country, style: boldInfoTextStyle),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: _mentor.skills
+                        .where((skill) => _user.skills.contains(skill))
+                        .map((e) => SkillTile(e))
+                        .toList(),
+                  ),
+                ),
               ],
             ),
           ),

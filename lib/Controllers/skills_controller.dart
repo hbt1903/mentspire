@@ -15,17 +15,10 @@ class SkillsController extends GetxController {
 
   RxList<String> skills;
   RxList<String> selectedSkills;
-  SwipableStackController controller = SwipableStackController();
   @override
   void onInit() async {
     selectedSkills = _user.skills.obs;
     skills = List<String>().obs;
-    controller.addListener(() {
-      if (controller.currentIndex == skills.length) {
-        checkedAllSkills.value = true;
-      }
-      update();
-    });
     fetchSkills();
     super.onInit();
   }

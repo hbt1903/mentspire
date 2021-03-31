@@ -81,34 +81,3 @@ class SkillsScreen extends StatelessWidget {
     );
   }
 }
-
-class SkillsWidget extends StatelessWidget {
-  final SkillsController _controller;
-
-  SkillsWidget(this._controller);
-  @override
-  Widget build(BuildContext context) {
-    return SwipableStack(
-      controller: _controller.controller,
-      itemCount: _controller.skills.length,
-      viewFraction: .9,
-      builder: (context, index, constraints) => Material(
-        elevation: 5,
-        borderRadius: BorderRadius.circular(16),
-        child: Container(
-          width: Get.width,
-          height: Get.width * .7,
-          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: darkGrey,
-          ),
-          child: Center(
-            child: Text(_controller.skills[index],
-                style: boldInfoTextStyle.copyWith(color: white)),
-          ),
-        ),
-      ),
-    );
-  }
-}

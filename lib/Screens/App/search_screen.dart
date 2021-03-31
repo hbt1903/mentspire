@@ -2,10 +2,15 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mentspire/Controllers/auth_controller.dart';
 import 'package:mentspire/Controllers/mentors_controller.dart';
+import 'package:mentspire/Models/app_user.dart';
 import 'package:mentspire/Models/mentor.dart';
+import 'package:mentspire/Themes/colors.dart';
 import 'package:mentspire/Themes/text_themes.dart';
 import 'package:mentspire/Widget/mentor_card.dart';
 import 'package:mentspire/Widget/request_card.dart';
+import 'package:multiselect_formfield/multiselect_formfield.dart';
+
+final _user = AppUser.instance;
 
 class _SearchScreenState extends State<SearchScreen> {
   AuthController authController = Get.put(AuthController());
@@ -22,23 +27,67 @@ class _SearchScreenState extends State<SearchScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextField(
-                controller: _controller.searchController,
-                onChanged: (t) {
-                  setState(() {
-                    text = t;
-                  });
-                },
-                decoration: InputDecoration(
-                  labelText: "Search",
-                  prefixIcon: Icon(Icons.search),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: _controller.searchController,
+                        onChanged: (t) {
+                          setState(() {
+                            text = t;
+                          });
+                        },
+                        decoration: InputDecoration(
+                          labelText: "Search",
+                          prefixIcon: Icon(Icons.search),
+                        ),
+                      ),
+                    ),
+                    Obx(
+                      () => IconButton(
+                        onPressed: _controller.toggleShowSkills,
+                        icon: _controller.showSkillFilter.isFalse
+                            ? Icon(Icons.sort)
+                            : Icon(Icons.cancel),
+                      ),
+                    ),
+                  ],
                 ),
               ),
+              Obx(() {
+                if (_controller.showSkillFilter.isTrue)
+                  return Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: MultiSelectFormField(
+                      textField: 'display',
+                      valueField: 'value',
+                      okButtonLabel: 'Filter',
+                      cancelButtonLabel: 'Cancel',
+                      checkBoxCheckColor: white,
+                      checkBoxActiveColor: green,
+                      dialogTextStyle: infoTextStyle,
+                      title: Text("Skills", style: boldInfoTextStyle),
+                      chipBackGroundColor: darkGrey,
+                      chipLabelStyle: chipLabelTextStyle,
+                      onSaved: (value) {
+                        if (value == null) return;
+                        _controller.setSelectedSkils(value);
+                      },
+                      dataSource: _user.skills
+                          .map((e) => {"display": e, "value": e})
+                          .toList(),
+                    ),
+                  );
+                else
+                  return Container();
+              }),
               Expanded(
                 child: Obx(
                   () => ListView(
                     padding: EdgeInsets.symmetric(horizontal: Get.width * .025),
-                    children: _controller.mentor
+                    children: _controller.mentorsToShow
                         .where((mentor) =>
                             mentor.name
                                 .toLowerCase()
