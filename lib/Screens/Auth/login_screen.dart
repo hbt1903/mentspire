@@ -17,14 +17,15 @@ class LoginScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: Container(
+          color: Colors.white,
           width: double.infinity,
           height: double.infinity,
           padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.network(
-                "https://seeklogo.com/images/Y/yves-rocher-logo-0DDF313E61-seeklogo.com.png",
+              Image.asset(
+                "assets/images/logo.jpeg",
                 width: Get.width * .3,
                 height: Get.width * .3,
                 fit: BoxFit.cover,
