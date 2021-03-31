@@ -43,7 +43,7 @@ class CountrySelectScreen extends StatelessWidget {
               ),
               SizedBox(height: 32),
               Obx(() {
-                if (_controller.universitiesReady)
+                if (_controller.universitiesReady && _user.isMentor)
                   return DropdownSearch<University>(
                     mode: Mode.MENU,
                     showSearchBox: true,
@@ -56,7 +56,7 @@ class CountrySelectScreen extends StatelessWidget {
                         ? _controller.selectedUniversity.value
                         : null,
                   );
-                else if (_controller.countrySelected)
+                else if (_controller.countrySelected && _user.isMentor)
                   return SpinKitFadingCircle(color: lightGrey, size: 24);
                 else
                   return Container();

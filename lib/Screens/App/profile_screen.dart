@@ -19,19 +19,7 @@ class ProfileScreen extends StatelessWidget {
     AuthController _authController = Get.find();
     final _user = user ?? _authController.user.value;
     return Scaffold(
-      appBar: user == null
-          ? null
-          : AppBar(
-              actions: [
-                PopupMenuButton(
-                  itemBuilder: (context) => [
-                    PopupMenuItem(child: Text("Add")),
-                    PopupMenuItem(child: Text("Remove")),
-                  ],
-                  icon: Icon(Icons.more_horiz),
-                ),
-              ],
-            ),
+      appBar: user == null ? null : AppBar(),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -47,17 +35,11 @@ class ProfileScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.map_rounded, color: darkGrey),
-                  SizedBox(width: 8),
-                  Text(
-                    _user.countrySchoolText,
-                    style: infoTextStyle,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+              Icon(Icons.map_rounded, color: darkGrey),
+              Text(
+                _user.countrySchoolText,
+                style: infoTextStyle,
+                textAlign: TextAlign.center,
               ),
               Container(
                 width: Get.width * .8,
